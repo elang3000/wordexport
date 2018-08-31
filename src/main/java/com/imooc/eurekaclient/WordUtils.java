@@ -21,12 +21,13 @@ public class WordUtils {
      //配置信息,代码本身写的还是很可读的,就不过多注解了  
     private static Configuration configuration = null;  
     //这里注意的是利用WordUtils的类加载器动态获得模板文件的位置  
-   // private static final String templateFolder = WordUtils.class.getClassLoader().getResource("../../").getPath() + "WEB-INF/templetes/";  
+//    private static final String templateFolder = WordUtils.class.getClassLoader().getResource("../../").getPath() + "templetes/";  
     private static final String templateFolder = "d:/aaa";  
     static {  
         configuration = new Configuration();  
         configuration.setDefaultEncoding("utf-8");  
         try {  
+        	System.out.println(templateFolder);
             configuration.setDirectoryForTemplateLoading(new File(templateFolder));  
         } catch (IOException e) {  
             e.printStackTrace();  
@@ -83,4 +84,5 @@ public class WordUtils {
         }  
         return f;  
     }  
+    
 }

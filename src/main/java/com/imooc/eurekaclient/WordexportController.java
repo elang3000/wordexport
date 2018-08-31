@@ -16,28 +16,95 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class WordexportController {
 	
-	@GetMapping("hello")
-	public String exportWord(){
-		return "123";
-	}
 	
-	@RequestMapping("/exportSellPlan")
-    public @ResponseBody void exportSellPlan(Long id,HttpServletRequest request,HttpServletResponse response){
-        Calendar calendar = Calendar.getInstance();// 取当前日期。
+	@RequestMapping("/exportcgqs")
+    public @ResponseBody void exportCGQS(HttpServletRequest request,HttpServletResponse response){
              //获得数据  
             Map<String, Object> map = new HashMap<String, Object>(); 
-            map.put("bYear", 1);
-            map.put("lYear", 2);
-            map.put("leader",3); 
-            map.put("phone", 4);
-            map.put("curYear", 5);
+            map.put("munit", "长工局");
+            map.put("myear", "2008");
+            map.put("mnumb", "123");
+            map.put("msigner", "张三");
+            map.put("mexpnm", "李四");
+            map.put("mcgtotal", "100");
+            map.put("mmonth", "5");
+            map.put("mday", "11");
+            
+
             try {
-                WordUtils.exportMillCertificateWord(request,response,map,"方案","sellPlan.ftl");
+                WordUtils.exportMillCertificateWord(request,response,map,"方案","cgqs.ftl");
             } catch (IOException e) {
                 // TODO Auto-generated catch block
                 e.printStackTrace();
             }    
     }
+	
+	@RequestMapping("/exportcgsh")
+	public @ResponseBody void exportCGSH(HttpServletRequest request,HttpServletResponse response){
+		//获得数据  
+		Map<String, Object> map = new HashMap<String, Object>(); 
+
+		map.put("mexpnm", "李四");
+		map.put("mtotal", "100");
+		map.put("mtotaltoz", "40");
+		map.put("mtotaltozn", "60");
+		map.put("myear", "2008");
+		map.put("mmonth", "5");
+		map.put("mday", "11");
+		
+		
+		try {
+			WordUtils.exportMillCertificateWord(request,response,map,"方案","cgsh.ftl");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}    
+	}
+	@RequestMapping("/exportgwyqs")
+	public @ResponseBody void exportGWYQS(HttpServletRequest request,HttpServletResponse response){
+		//获得数据  
+		Map<String, Object> map = new HashMap<String, Object>(); 
+		
+		map.put("nunit", "长江三峡");
+		map.put("nexpnm", "李四");
+		map.put("ntotal", "100");
+		map.put("nyear", "2008");
+		map.put("nmonth", "5");
+		map.put("nday", "11");
+		map.put("nnumb", "12");
+		map.put("nsigner", "张飞");
+		
+		
+		try {
+			WordUtils.exportMillCertificateWord(request,response,map,"方案","gwyqs.ftl");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}    
+	}
+	@RequestMapping("/exportgwysh")
+	public @ResponseBody void exportGWYSH(HttpServletRequest request,HttpServletResponse response){
+		//获得数据  
+		Map<String, Object> map = new HashMap<String, Object>(); 
+		
+		map.put("nexpnm", "李四");
+		map.put("ntotal", "100");
+		map.put("nyear", "2008");
+		map.put("nmonth", "5");
+		map.put("nday", "11");
+		map.put("ntotaltoz", "12");
+		map.put("ntotaltozn", "78");
+		
+		
+		try {
+			WordUtils.exportMillCertificateWord(request,response,map,"方案","gwysh.ftl");
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}    
+	}
+	
+	
 	
 	/*//获得图片的base64码
     @SuppressWarnings("deprecation")
