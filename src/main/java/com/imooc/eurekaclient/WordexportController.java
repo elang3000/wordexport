@@ -1,10 +1,13 @@
 package com.imooc.eurekaclient;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
+import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -38,6 +41,35 @@ public class WordexportController {
                 e.printStackTrace();
             }    
     }
+	
+	@RequestMapping("/exportExcel")
+	@ResponseBody
+	public void exportExcel(HttpServletRequest request,HttpServletResponse response) {
+		List<Servant> list=new ArrayList<>();
+		for(int i=1;i<=10;i++) {
+			Servant servant=new Servant();
+			servant.setSerialNumber(i);
+			servant.setName("张三1");
+			servant.setIdCardNumb(System.currentTimeMillis()+"");
+			servant.setEmployNumb(System.currentTimeMillis()+"");
+			servant.setXl("小学"+i);
+			servant.setIsShanghai("是的");
+			servant.setIsGraduating("是的");
+			servant.setIsDesc("奥斯迪加多久哦爱上的"+this.hashCode());
+			list.add(servant);
+		}
+
+		Map<String,Object> map=new HashMap<>();
+		map.put("size",10 );
+		map.put("list", list);
+		
+		try {
+			ExcelUtils.exportMillCertificateWord(request, response, map, "aaa", "dwshhz.ftl");
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		
+	}
 	
 	/*//获得图片的base64码
     @SuppressWarnings("deprecation")
